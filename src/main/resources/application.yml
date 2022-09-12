@@ -1,0 +1,20 @@
+app:
+  datasource:
+    flyway:
+      url: jdbc:postgresql://localhost:5432/pg_r2
+      username: 'postgres'
+      password: 'password'
+
+    postgres:
+      host: localhost
+      port: 5432
+      database: pg_r2
+      username: 'postgres'
+      password: 'password'
+
+spring:
+  webflux:
+    base-path: /api/
+
+server:
+  port: 8080
