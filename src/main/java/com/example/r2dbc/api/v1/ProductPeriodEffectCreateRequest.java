@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
+@AllArgsConstructor(staticName = "create")
 public class ProductPeriodEffectCreateRequest {
   @NotNull(message = "Period Effect is required")
   private LocalDateTime periodEffect;

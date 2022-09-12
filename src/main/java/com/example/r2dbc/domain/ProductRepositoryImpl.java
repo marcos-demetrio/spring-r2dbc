@@ -1,5 +1,6 @@
 package com.example.r2dbc.domain;
 
+import static org.springframework.data.relational.core.query.Criteria.empty;
 import static org.springframework.data.relational.core.query.Criteria.where;
 import static org.springframework.data.relational.core.query.Query.query;
 
@@ -31,7 +32,11 @@ public class ProductRepositoryImpl implements ProductRepository {
 
   @Override
   public Flux<ProductEntity> findAllBy(Pageable pageable) {
-    return null;
+    return this.template
+        .select(ProductEntity.class)
+        .matching(query(empty()).limit(pageable.getPageSize()).offset(pageable.getOffset()))
+        .all()
+        .flatMap(this::findPeriodEffectByProduct);
   }
 
   @Override
@@ -56,7 +61,7 @@ public class ProductRepositoryImpl implements ProductRepository {
   @Override
   public Mono<UUID> findFirstPeriodEffectIdByProductId(UUID productId) {
     var query =
-        "SELECT product_period_effect_id FROM public.product_period_effect"
+        "SELECT product_period_effect_id FROM public.product_period_effect "
             + "where product_Id = :productId "
             + "order by period_effect asc limit 1";
 

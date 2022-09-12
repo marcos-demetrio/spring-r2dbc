@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
+@AllArgsConstructor(staticName = "create")
 public class ProductPeriodEffectUpdateRequest {
   @NotNull(message = "Name is required")
   private String name;

@@ -60,7 +60,7 @@ public class ProductController {
     return this.service.updatePeriodEffect(periodEffectId, ProductMapper.toDto(request));
   }
 
-  @ResponseStatus(value = OK)
+  @ResponseStatus(value = CREATED)
   @PostMapping("{productId}/period-effect")
   public Mono<ProductPeriodEffectResponse> createPeriodEffect(
       @PathVariable("productId") final UUID productId,
